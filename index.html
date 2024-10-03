@@ -3,21 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Y-Tube</title>
     <!-- All CDN  -->
     <link href="https://cdn.jsdelivr.net/npm/daisyui@latest/dist/full.min.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- internal Style  -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&display=swap');
+        body{
+            font-family: "Afacad Flux", sans-serif;
+        }
+    </style>
 </head>
 <body>
     <!-- header-section start  -->
     <header>
         <!-- top nav section stert -->
-        <nav class="w-11/12 mx-auto flex justify-between items-center">
+        <nav class="w-11/12 mx-auto flex justify-between items-center mt-2 border-b-2 py-2 " >
             <div>
                 <h2 class="text-5xl font-bold text-gray-950"><span class="text-red-600">Y</span>-Tube</h2>
             </div>
             <div>
-                <h2 class="btn text-2xl">Short By View</h2>
+                <!-- <h2 class="btn text-2xl">Short By View</h2> -->
+                <label class="input input-bordered flex items-center gap-2">
+                    <input type="text" class="grow" placeholder="Search" />
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 16 16"
+                      fill="currentColor"
+                      class="h-4 w-4 opacity-70">
+                      <path
+                        fill-rule="evenodd"
+                        d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
+                        clip-rule="evenodd" />
+                    </svg>
+                  </label>
             </div>
             <div>
                 <button class="btn btn-primary px-4 text-2xl bg-red-600 border-none">Blog</button>
@@ -25,12 +46,21 @@
         </nav>
         <!-- top nav section close -->
         <!-- catagory nav section start -->
+        <div>
+            <nav id="categories" class="py-3 flex gap-5 justify-center"></nav>
+        </div>
         <!-- catagory nav section close -->
     </header>
     <!-- header-section start  -->
     <!-- main-section start  -->
     <main>
-
+        <!-- video section start -->
+         <div>
+            <div id="videos">
+                
+            </div>
+         </div>
+        <!-- video section close -->
     </main>
     <!-- main-section close  -->
 
