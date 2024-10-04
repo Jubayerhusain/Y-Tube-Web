@@ -1,30 +1,43 @@
 // fetch the catagory from API 
 //loaded the catgorise
-const loadCatagory = ()=>{
+const loadbtnCatagory = ()=>{
     fetch(`https://openapi.programming-hero.com/api/phero-tube/categories`)
     .then(responce => responce.json())
-    .then(data => displayCategories(data.categories))
+    .then(data => displayBTnCategories(data.categories))
     .catch((error) => console.log(error));
 
 }
 //loaded the videos
 const loadVideos = () => {
-    fetch(`https://openapi.programming-hero.com/api/phero-tube/videos`)
+    fetch(`https://openapi.programming-hero.com/api/phero-tube/videos`) 
     .then(responce => responce.json())
     .then(data => displayVidios(data.videos))
     .catch((error) => console.log(error));
+}
+//remove btn classs list
+const removeClass = () => {
+    const removeClassBtn = document.getElementsByClassName('btn-category')
+    // console.log(removeClassBtn);
+    for (const remove of removeClassBtn) {
+        remove.classList.remove('bg-red-500');
+    }
 }
 const loadCategoriseVideos = (id) => {
     // alert(id)
     fetch(`https://openapi.programming-hero.com/api/phero-tube/category/${id}`)
     .then(responce => responce.json())
-    .then(data => displayVidios(data.category))
+    .then(data => {
+        removeClass();
+        const btnID = document.getElementById(`btn-${id}`)
+        btnID.classList.add('bg-red-500');
+        displayVidios(data.category)
+    })
     .catch((error) => console.log(error));
 
 }
 
 //displayCategories for nav btn
-const displayCategories = (catagories) =>{
+const displayBTnCategories = (catagories) =>{
     const loadCatagorySection = document.getElementById('categories');
         catagories.forEach(item => {
         // console.log(item)
@@ -32,7 +45,8 @@ const displayCategories = (catagories) =>{
         //create element for btn
         const createButtonSection = document.createElement('div');
         createButtonSection.innerHTML = `
-        <button onclick ="loadCategoriseVideos(${item.category_id})" class="btn text-xl font-semibold">${item.category}</button>
+        <button id = "btn-${item.category_id}" onclick ="loadCategoriseVideos(${item.category_id})" 
+        class="btn btn-category text-xl font-semibold">${item.category}</button>
         `;
         loadCatagorySection.append(createButtonSection);
     })
@@ -56,7 +70,7 @@ const displayVidios = (videos) =>{
     else {
         videoSection.classList.add('grid')
     }
-    console.log(videos.length)
+    // console.log(videos.length)
     videos.forEach(video => {
         // console.log(video)
         // create a videos section
@@ -77,10 +91,9 @@ const displayVidios = (videos) =>{
                 <h2 class = "pl-2 text-2xl font-bold ">${video.title}</h2>
                 <div class = "flex items-center pl-2">
                     <h2 class = "text-lg text-gray-700 ">${video.authors[0].profile_name}</h2>
-                    ${video.authors[0].verified == true ? `<img class = "h-5 w-5 ml-1" src ="./asset/verify.png" />`: ""}
+                    ${video.authors[0].verified == true ? 
+                    `<img class = "h-5 w-5 ml-1" src ="./asset/verify.png" />`: ""}
                 </div>
-                
-
             </div>
         </div>
         `;
@@ -88,7 +101,7 @@ const displayVidios = (videos) =>{
     })
 }
 // fucntion calling area 
-loadCatagory();
+loadbtnCatagory();
 loadVideos();
 
 // {
